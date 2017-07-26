@@ -32,12 +32,5 @@ function DayItem (props) {
   )
 }
 
-DayItem.propTypes = {
-  day: PropTypes.shape({
-    dt: PropTypes.number.isRequired,
-    weather: PropTypes.array.isRequired,
-  }).isRequired,
-  handleClick: PropTypes.func,
-}
 
 module.exports = DayItem;

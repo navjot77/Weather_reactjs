@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-import  {Link} from 'react-router-dom'
+import  {Link} from 'react-router-dom';
 
 function Button (props) {
   return (

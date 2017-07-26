@@ -1,49 +1,63 @@
 var React = require('react');
 var Forecast = require('../components/Forecast');
 var getForcast = require('../helpers/api').getForcast;
+import queryString from 'query-string';
 
-var ForecastContainer = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  getInitialState: function () {
-    return {
-      isLoading: true,
-      forecastData: {}
+
+class ForecastContainer extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state={
+        isLoading: true,
+        forecastData: {},
+        city:''
+
+    };
     }
-  },
-  componentDidMount: function () {
-    this.makeRequest(this.props.routeParams.city)
-  },
-  componentWillReceiveProps: function (nextProps) {
-    this.makeRequest(nextProps.routeParams.city)
-  },
-  makeRequest: function (city) {
-    getForcast(city)
-      .then(function (forecastData) {
-        this.setState({
-          isLoading: false,
-          forecastData: forecastData
-        });
-      }.bind(this));
-  },
-  handleClick: function (weather) {
+
+  componentDidMount () {
+   const {city}=queryString.parse(this.props.location.search);
+    this.makeRequest(city);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // this.makeRequest(nextProps.routeParams.city)
+  }
+
+  async makeRequest(city) {
+
+    const forecastData=await getForcast(city);
+    this.setState(function(){
+          return (
+              {
+                  city,
+                  isLoading: false,
+                  forecastData
+
+              }
+          );
+        })
+   }
+  /*
+  handleClick(weather) {
     this.context.router.push({
       pathname: '/detail/' + this.props.routeParams.city,
       state: {
         weather: weather
       }
     })
-  },
-  render: function () {
+  }
+  */
+  render() {
     return (
       <Forecast
-        city={this.props.routeParams.city}
+        city={this.state.city}
         isLoading={this.state.isLoading}
-        handleClick={this.handleClick}
+        //handleClick={this.handleClick}
         forecastData={this.state.forecastData} />
     )
   }
-});
+};
 
-module.exports = ForecastContainer;
+export default ForecastContainer;
