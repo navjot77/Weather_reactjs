@@ -36,7 +36,7 @@ function ForecastUI (props) {
       <p style={styles.subheader}>Select a day</p>
       <div style={styles.container}>
         {props.forecast.list.map(function (listItem) {
-          return <DayItem key={listItem.dt} day={listItem}  />
+          return <DayItem key={listItem.dt} day={listItem} handleClick={props.handleClick.bind(null, listItem)} />
         })}
       </div>
     </div>
@@ -52,7 +52,7 @@ function Forecast (props) {
           : <ForecastUI
               city={props.city}
               forecast={props.forecastData}
-              //handleClick={props.handleClick}
+              handleClick={props.handleClick}
           />
       }
     </div>

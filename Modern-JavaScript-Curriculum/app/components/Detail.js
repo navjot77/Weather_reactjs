@@ -14,6 +14,7 @@ var styles = {
 }
 
 function Detail (props) {
+  console.log(props.weather)
   return (
     <div style={styles.container}>
       <DayItem day={props.weather} />
