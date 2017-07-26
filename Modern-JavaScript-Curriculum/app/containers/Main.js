@@ -1,5 +1,5 @@
 var React = require('react');
-//var GetCityContainer = require('./GetCityContainer');
+var GetCityContainer = require('./GetCityContainer');
 
 var styles = {
   container: {
@@ -19,11 +19,12 @@ var styles = {
 
 class Main extends React.Component{
   render(){
+
     return(
         <div style={styles.container}>
           <div style={styles.header}>
             <h2 style={{margin: 0}}>Clever Title</h2>
-
+            <GetCityContainer direction='row' />
           </div>
         </div>
 

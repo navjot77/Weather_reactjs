@@ -1,12 +1,13 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+import  {Link} from 'react-router-dom'
 
 function Button (props) {
   return (
     <button type='button'
       style={{margin: 10}}
       className='btn btn-success'
-      onClick={props.onSubmitCity}>
+     >
         {props.children}
     </button>
   )
@@ -23,10 +24,10 @@ function InputField (props) {
   )
 }
 
-function getStyles (props) {
+function getStyles () {
   return {
     display: 'flex',
-    flexDirection: props.direction || 'column',
+    flexDirection:  'column',
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: 300,
@@ -36,23 +37,27 @@ function getStyles (props) {
 
 function GetCity (props) {
   return (
-    <div style={getStyles(props)}>
+    <div style={getStyles()}>
       <InputField
         onUpdateCity={props.onUpdateCity}
         city={props.city} />
-      <Button
-        onSubmitCity={props.onSubmitCity}>
-          Get Weather
-      </Button>
+
+        { props.city && <Link to={
+          {pathname: '/forecast',
+              search:'?city='+props.city}
+      }>
+          <Button>
+            Get Weather
+          </Button>
+        </Link>
+
+          }
+
+
     </div>
   )
 }
 
-GetCity.propTypes = {
-  direction: PropTypes.string,
-  onSubmitCity: PropTypes.func.isRequired,
-  onUpdateCity: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired
-}
+
 
 module.exports = GetCity;
