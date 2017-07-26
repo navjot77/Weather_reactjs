@@ -27,7 +27,7 @@ function InputField (props) {
 function getStyles () {
   return {
     display: 'flex',
-    flexDirection:  'column',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: 300,
@@ -37,8 +37,9 @@ function getStyles () {
 
 function GetCity (props) {
   return (
-    <div style={getStyles()}>
+    <div style={getStyles(props)}>
       <InputField
+
         onUpdateCity={props.onUpdateCity}
         city={props.city} />
 

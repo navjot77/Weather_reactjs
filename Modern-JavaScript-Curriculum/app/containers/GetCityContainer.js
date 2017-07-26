@@ -8,7 +8,7 @@ class GetCityContainer extends React.Component{
     super(props);
 
       this.state={
-        direction:props.direction,
+        direction:props.direction || 'column',
           city:''
       }
       //this.handleSubmitCity=this.handleSubmitCity.bind(this);
@@ -30,7 +30,7 @@ class GetCityContainer extends React.Component{
     render(){
     return (
         <GetCity
-
+            direction={this.state.direction}
             onUpdateCity={this.handleUpdateCity}
             city={this.state.city} />
     )

@@ -10,7 +10,7 @@ var styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    height: '100vh',
     width: '100%'
   },
   header: {
@@ -24,7 +24,7 @@ function Home (props) {
   return (
     <div style={styles.container}>
       <h1 style={styles.header}>Enter a City and State</h1>
-      <GetCityContainer />
+      <GetCityContainer direction='row' />
     </div>
   )
 }
